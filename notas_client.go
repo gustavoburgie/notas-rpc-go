@@ -6,6 +6,11 @@ import (
     "os"
 )
 
+type Aluno struct {
+    Nome string
+    Nota float64
+}
+
 func main() {
 
     if len(os.Args) != 3{
@@ -30,5 +35,13 @@ func main() {
     } else {
         fmt.Printf("Nome: %s\n", nome)
         fmt.Printf("Nota: %.2f\n", nota)
+    }
+
+    var aluno Aluno
+    err = client.Call("Notas.ObtemAluno", nome, &aluno)
+    if err != nil {
+        fmt.Println("Erro ao obter nota:", err)
+    } else {
+        fmt.Printf("Aluno: %s\n", aluno.Nome)
     }
 }

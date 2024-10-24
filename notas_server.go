@@ -40,15 +40,14 @@ func (s *Notas) ObtemNota(nome string, nota *float64) error {
     return fmt.Errorf("Aluno %s não encontrado", nome)
 }
 
-func (s *Notas) Fatorial(n int, res *int) error {
-    
-    if(n<0){
-        return fmt.Errorf("Numero invalido")
+func (s *Notas) ObtemAluno(nome string, a *Aluno) error {
+    for _, aluno := range s.alunos {
+        if aluno.Nome == nome {
+            *a = aluno
+            return nil
+        }
     }
-    
-    *res = 50;
-
-    return nil 
+    return fmt.Errorf("Aluno %s não encontrado", nome)
 }
 
 func main() {
